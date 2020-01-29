@@ -25,6 +25,9 @@ class Form extends Component {
         });
     };
 
+
+    
+
     // Handle the form submission
     handleSubmit = event => {
         event.preventDefault();

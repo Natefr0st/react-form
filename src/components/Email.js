@@ -15,6 +15,7 @@ class Email extends Component {
                     id="email"
                     placeholder="e.g. john@mail.com"
                     onChange={handleChange}
+                    required
                 />
             </div>
         );
