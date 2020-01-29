@@ -4,8 +4,7 @@ import React, { Component } from "react";
 class Name extends Component {
     // Render labels and name inputs
     render() {
-        const { firstName, lastName, handleChange, errMsg } = this.props;
-        console.log(this.props)
+        const { firstName, lastName, handleChange } = this.props;
         return (
             <div className="form-names">
                 <label htmlFor="firstName">Name</label>
@@ -26,7 +25,6 @@ class Name extends Component {
                     id="lastName"
                     onChange={handleChange}
                 />
-                {errMsg != null ? <span>Alabala</span> : null}
             </div>
         );
     }

@@ -15,12 +15,7 @@ class Form extends Component {
             lastName: "",
             email: "",
             country: "Norway",
-            bio: "",
-            errors: {
-                firstName: null,
-                lastName: null,
-                email: null
-            }
+            bio: ""
         };
     }
     // Handle inputs value on change event
@@ -30,59 +25,19 @@ class Form extends Component {
         });
     };
 
-    isValid = () => {
-        // validate the state
-        let isValid = true;
-        let firstNameError = null;
-        let lastNameError = null;
-        let emailError = null;
-
-        if (this.state.firstName === "" || null) {
-            firstNameError = "Field is Empty";
-            isValid = false;
-        }
-        if (this.state.lastName === "" || null) {
-            lastNameError = "Field is Empty";
-            isValid = false;
-        }
-        if (this.state.email === "" || null) {
-            emailError = "Field is Empty";
-            isValid = false;
-        }
-
-        // Validate each field && if every field is ok isValid == true else false
-        this.setState({
-            errors: {
-                firstName: firstNameError,
-                lastName: lastNameError,
-                email: emailError
-            }
-        });
-        if (isValid) {
-            return true;
-        } else {
-            console.log(this.state);
-            return false;
-        }
-    };
-
     // Handle the form submission
     handleSubmit = event => {
         event.preventDefault();
-        if (this.isValid()) {
-            fetch("https://postb.in/1580328526126-6915104780346", {
-                method: "POST",
-                mode: "no-cors",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Origin": "*",
-                    "Access-Control-Allow-Headers": "*"
-                },
-                body: JSON.stringify(this.state)
-            });
-        } else {
-            console.log("error");
-        }
+        fetch("https://postb.in/1580328526126-6915104780346", {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "*"
+            },
+            body: JSON.stringify(this.state)
+        });
         console.log(this.state);
     };
     // Render Form Component and its child components
@@ -98,7 +53,6 @@ class Form extends Component {
                     firstName={firstName}
                     lastName={lastName}
                     handleChange={this.handleChange}
-                    errMsg={this.state.errors.firstName}
                 />
                 <Email email={email} handleChange={this.handleChange} />
                 <Select country={country} handleChange={this.handleChange} />
