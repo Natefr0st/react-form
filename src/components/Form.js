@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+// Import child components
 import Name from "components/Name";
 import Email from "components/Email";
 import Select from "components/Select";
@@ -14,7 +15,7 @@ class Form extends Component {
             firstName: "",
             lastName: "",
             email: "",
-            country: "Norway",
+            country: "Bulgaria",
             bio: ""
         };
     }
@@ -25,23 +26,45 @@ class Form extends Component {
         });
     };
 
-
-    
+    // Validate form submission
+    validate = () => {
+        const { firstName, lastName, email } = this.state;
+        // Check if the inputs are empty
+        if (
+            firstName === "" ||
+            null ||
+            lastName === "" ||
+            null ||
+            email === "" ||
+            null
+        ) {
+            alert("please fill the form");
+        } else {
+            // Send POST Request (every postbin expires aftre 30min)
+            fetch("https://postb.in/1580375608125-4028412981424", {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(this.state)
+            });
+            alert(`Your form is submited ${JSON.stringify(this.state)}`);
+            // Clear form inputs after submission
+            this.setState({
+                firstName: "",
+                lastName: "",
+                email: "",
+                country: "",
+                bio: ""
+            });
+        }
+    };
 
     // Handle the form submission
     handleSubmit = event => {
         event.preventDefault();
-        fetch("https://postb.in/1580328526126-6915104780346", {
-            method: "POST",
-            mode: "no-cors",
-            headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Headers": "*"
-            },
-            body: JSON.stringify(this.state)
-        });
-        console.log(this.state);
+        this.validate();
     };
     // Render Form Component and its child components
     render() {

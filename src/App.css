@@ -134,7 +134,7 @@ form .btn:hover {
     z-index: -1;
 }
 
-/* Media Query - Phones */
+/* Media Query - Phone Screens */
 @media only screen and (max-width: 767px) {
 
     .App {

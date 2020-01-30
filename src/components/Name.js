@@ -16,7 +16,6 @@ class Name extends Component {
                     placeholder="First Name"
                     id="firstName"
                     onChange={handleChange}
-                    required
                 />
                 <input
                     type="text"
@@ -25,7 +24,6 @@ class Name extends Component {
                     placeholder="Last Name"
                     id="lastName"
                     onChange={handleChange}
-                    required
                 />
             </div>
         );
